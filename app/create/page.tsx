@@ -1,3 +1,4 @@
+// @ts-ignore
 "use client";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -334,7 +336,8 @@ export default function CreatePage() {
               <div className="space-y-4">
                 {invoice.items.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
-                    No items added yet. Click "Add Item" to get started.
+                    No items added yet. Click &quot;Add Item&quot; to get
+                    started.
                   </div>
                 ) : (
                   invoice.items.map((item, index) => (

@@ -23,7 +23,7 @@ const CtaSection: React.FC = () => (
       <CardContent>
         <Link href="/create">
           <Button size="lg" className="w-full sm:w-auto">
-            Start Now - It's Free
+            Start Now - It&quot;s Free
           </Button>
         </Link>
       </CardContent>

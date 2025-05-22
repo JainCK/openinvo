@@ -5,11 +5,11 @@ import { RootState } from "@/store/store";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Download, Edit, Printer, Palette } from "lucide-react";
+import { ArrowLeft, Edit, Printer, Palette } from "lucide-react";
 import Link from "next/link";
 import { updateCustomization } from "@/store/invoiceSlice";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+// import html2canvas from "html2canvas";
+// import jsPDF from "jspdf";
 
 export default function PreviewPage() {
   const dispatch = useDispatch();
