@@ -8,8 +8,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, Edit, Printer, Palette } from "lucide-react";
 import Link from "next/link";
 import { updateCustomization } from "@/store/invoiceSlice";
-// import html2canvas from "html2canvas";
-// import jsPDF from "jspdf";
+import CommonHeader from "@/components/commonHeader";
 
 export default function PreviewPage() {
   const dispatch = useDispatch();
@@ -35,43 +34,6 @@ export default function PreviewPage() {
     window.print();
   };
 
-  //   const handleDownloadPDF = async () => {
-  //     if (!invoiceRef.current) return;
-
-  //     try {
-  //       const canvas = await html2canvas(invoiceRef.current, {
-  //         scale: 2,
-  //         useCORS: true,
-  //         allowTaint: true,
-  //       });
-
-  //       const imgData = canvas.toDataURL("image/png");
-  //       const pdf = new jsPDF("p", "mm", "a4");
-
-  //       const imgWidth = 210; // A4 width in mm
-  //       const pageHeight = 295; // A4 height in mm
-  //       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  //       let heightLeft = imgHeight;
-
-  //       let position = 0;
-
-  //       pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-  //       heightLeft -= pageHeight;
-
-  //       while (heightLeft >= 0) {
-  //         position = heightLeft - imgHeight;
-  //         pdf.addPage();
-  //         pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-  //         heightLeft -= pageHeight;
-  //       }
-
-  //       pdf.save(`invoice-${invoice.invoiceNumber || "draft"}.pdf`);
-  //     } catch (error) {
-  //       console.error("Error generating PDF:", error);
-  //       alert("Error generating PDF. Please try again.");
-  //     }
-  //   };
-
   const colorSchemes = [
     { name: "Blue", value: "#3b82f6" },
     { name: "Green", value: "#10b981" },
@@ -93,24 +55,11 @@ export default function PreviewPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm print:hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <Link
-              href="/create"
-              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back to Edit</span>
-            </Link>
-            <h1 className="text-2xl font-bold text-gray-900">
-              Invoice Preview
-            </h1>
-            <div className="w-24"></div>
-          </div>
-        </div>
-      </header>
+      <CommonHeader
+        name="Invoice Preview"
+        backHref="/create"
+        backLabel="Back to Edit"
+      />
 
       <div className="max-w-7xl mx-auto px-4 py-8 print:p-0">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -205,14 +154,6 @@ export default function PreviewPage() {
                   <Printer className="h-4 w-4 mr-2" />
                   Print Invoice
                 </Button>
-                {/* <Button
-                  onClick={handleDownloadPDF}
-                  variant="outline"
-                  className="w-full"
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Save as PDF
-                </Button> */}
                 <Link href="/create" className="block">
                   <Button variant="outline" className="w-full">
                     <Edit className="h-4 w-4 mr-2" />
@@ -321,8 +262,8 @@ export default function PreviewPage() {
 
               {/* Items Table */}
               {invoice.items.length > 0 && (
-                <div className="mb-8">
-                  <table className="w-full border-collapse">
+                <div className="mb-8 overflow-x-auto">
+                  <table className="w-full border-collapse min-w-[600px] sm:min-w-0">
                     <thead>
                       <tr
                         style={{
@@ -330,19 +271,19 @@ export default function PreviewPage() {
                             invoice.customization.colorScheme + "20",
                         }}
                       >
-                        <th className="border border-gray-300 px-4 py-2 text-left">
+                        <th className="border border-gray-300 px-2 py-2 text-left text-xs sm:px-4 sm:text-base">
                           Description
                         </th>
-                        <th className="border border-gray-300 px-4 py-2 text-center">
+                        <th className="border border-gray-300 px-2 py-2 text-center text-xs sm:px-4 sm:text-base">
                           Qty
                         </th>
-                        <th className="border border-gray-300 px-4 py-2 text-right">
+                        <th className="border border-gray-300 px-2 py-2 text-right text-xs sm:px-4 sm:text-base">
                           Unit Price
                         </th>
-                        <th className="border border-gray-300 px-4 py-2 text-center">
+                        <th className="border border-gray-300 px-2 py-2 text-center text-xs sm:px-4 sm:text-base">
                           Tax %
                         </th>
-                        <th className="border border-gray-300 px-4 py-2 text-right">
+                        <th className="border border-gray-300 px-2 py-2 text-right text-xs sm:px-4 sm:text-base">
                           Total
                         </th>
                       </tr>
@@ -355,19 +296,19 @@ export default function PreviewPage() {
 
                         return (
                           <tr key={item.id}>
-                            <td className="border border-gray-300 px-4 py-2">
+                            <td className="border border-gray-300 px-2 py-2 sm:px-4">
                               {item.description || "No description"}
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
+                            <td className="border border-gray-300 px-2 py-2 text-center sm:px-4">
                               {item.quantity}
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 text-right">
+                            <td className="border border-gray-300 px-2 py-2 text-right sm:px-4">
                               ${item.unitPrice.toFixed(2)}
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
+                            <td className="border border-gray-300 px-2 py-2 text-center sm:px-4">
                               {item.taxRate}%
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 text-right font-medium">
+                            <td className="border border-gray-300 px-2 py-2 text-right font-medium sm:px-4">
                               ${itemTotal.toFixed(2)}
                             </td>
                           </tr>
@@ -381,7 +322,7 @@ export default function PreviewPage() {
               {/* Totals */}
               {invoice.items.length > 0 && (
                 <div className="flex justify-end mb-8">
-                  <div className="w-64">
+                  <div className="w-full max-w-xs sm:w-64">
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Subtotal:</span>
