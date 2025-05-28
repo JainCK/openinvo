@@ -1,4 +1,4 @@
-// @ts-ignore
+/* eslint-disable */
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { i } from "motion/react-client";

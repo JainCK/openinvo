@@ -1,24 +1,14 @@
 import React from "react";
 
 const Footer: React.FC = () => (
-  <footer style={{ background: "#ffffff", color: "#333", padding: "2rem 0" }}>
-    <div
-      style={{
-        maxWidth: 900,
-        margin: "0 auto",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: "2rem",
-      }}
-    >
+  <footer className="bg-cyan-50 text-gray-800 py-8">
+    <div className="max-w-3xl mx-auto flex flex-col md:flex-row flex-wrap md:justify-between items-center gap-8 px-4">
       <div>
         <a
           href="https://github.com/jainck/openinvo"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: "#333", textDecoration: "none", fontWeight: 500 }}
+          className="text-gray-800 no-underline font-medium hover:underline"
         >
           ⭐ Star us on GitHub
         </a>
@@ -28,10 +18,10 @@ const Footer: React.FC = () => (
           &copy; {new Date().getFullYear()} OpenInvo.JainCK All rights reserved.
         </span>
       </div>
-      <div style={{ display: "flex", gap: "1.2rem", alignItems: "center" }}>
+      <div className="flex gap-5 items-center">
         <a
           href="https://www.jainck.me/"
-          style={{ color: "#333", textDecoration: "none" }}
+          className="text-gray-800 no-underline hover:underline"
           aria-label="Portfolio"
         >
           Portfolio
@@ -40,7 +30,7 @@ const Footer: React.FC = () => (
           href="https://twitter.com/jain_kuriakose"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: "#333", textDecoration: "none" }}
+          className="text-gray-800 no-underline hover:underline"
           aria-label="Twitter"
         >
           Twitter
@@ -49,7 +39,7 @@ const Footer: React.FC = () => (
           href="https://linkedin.com/in/jainck"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: "#333", textDecoration: "none" }}
+          className="text-gray-800 no-underline hover:underline"
           aria-label="LinkedIn"
         >
           LinkedIn
