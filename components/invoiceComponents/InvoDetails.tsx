@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateInvoiceDetails } from "@/store/invoiceSlice";
 
-const InvoiceDetails: React.FC = () => {
+const InvoDetails: React.FC = () => {
   const dispatch = useDispatch();
   const invoice = useSelector((state: RootState) => state.invoice);
 
@@ -76,4 +76,4 @@ const InvoiceDetails: React.FC = () => {
   );
 };
 
-export default InvoiceDetails;
+export default InvoDetails;

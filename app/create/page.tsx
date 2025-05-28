@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import InvoiceDetails from "@/components/invoiceComponents/invoiceDetails";
+import InvoiceDetails from "@/components/invoiceComponents/InvoDetails";
 import BusinessDetails from "@/components/invoiceComponents/businessDetails";
 import ClientDetails from "@/components/invoiceComponents/clientDetails";
 import InvoiceItems from "@/components/invoiceComponents/invoiceItems";
