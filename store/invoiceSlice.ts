@@ -6,6 +6,7 @@ export interface InvoiceItem {
   quantity: number;
   unitPrice: number;
   taxRate: number;
+  hsn: string;
 }
 
 export interface BusinessDetails {
@@ -14,12 +15,27 @@ export interface BusinessDetails {
   phone: string;
   email: string;
   logo: string | null;
+  gstin: string;
+  stateName: string;
+  stateCode: string;
 }
 
 export interface ClientDetails {
   name: string;
   address: string;
+  phone: string;
   email: string;
+  gstin: string;
+  stateName: string;
+  stateCode: string;
+  shipToSameAsBilling: boolean;
+  shipToName: string;
+  shipToAddress: string;
+  shipToPhone: string;
+  shipToEmail: string;
+  shipToGstin: string;
+  shipToStateName: string;
+  shipToStateCode: string;
 }
 
 export interface InvoiceState {
@@ -30,10 +46,19 @@ export interface InvoiceState {
   businessDetails: BusinessDetails;
   clientDetails: ClientDetails;
   notes: string;
+  isIndia: boolean;
+  currency: string;
+  authorizedSignatory: {
+    name: string;
+    signature: string | null;
+  };
   customization: {
-    colorScheme: string;
     font: string;
     layout: string;
+    pageSize: string;
+    margins: string;
+    logoSize: string;
+    headerStyle: string;
   };
 }
 
@@ -41,24 +66,48 @@ const initialState: InvoiceState = {
   invoiceNumber: "",
   invoiceDate: new Date().toISOString().split("T")[0],
   dueDate: "",
+  isIndia: false,
+  currency: "USD",
   businessDetails: {
     name: "",
     address: "",
     phone: "",
     email: "",
     logo: null,
+    gstin: "",
+    stateName: "",
+    stateCode: "",
   },
   clientDetails: {
     name: "",
     address: "",
+    phone: "",
     email: "",
+    gstin: "",
+    stateName: "",
+    stateCode: "",
+    shipToSameAsBilling: true,
+    shipToName: "",
+    shipToAddress: "",
+    shipToPhone: "",
+    shipToEmail: "",
+    shipToGstin: "",
+    shipToStateName: "",
+    shipToStateCode: "",
   },
   items: [],
   notes: "",
+  authorizedSignatory: {
+    name: "",
+    signature: null,
+  },
   customization: {
-    colorScheme: "#3b82f6",
     font: "sans-serif",
     layout: "spacious",
+    pageSize: "A4",
+    margins: "normal",
+    logoSize: "medium",
+    headerStyle: "classic",
   },
 };
 
@@ -82,7 +131,7 @@ const invoiceSlice = createSlice({
     },
     updateClientDetails: (
       state,
-      action: PayloadAction<{ field: string; value: string }>
+      action: PayloadAction<{ field: string; value: string | boolean }>
     ) => {
       const { field, value } = action.payload;
       (state.clientDetails as any)[field] = value;
@@ -94,6 +143,7 @@ const invoiceSlice = createSlice({
         quantity: 1,
         unitPrice: 0,
         taxRate: 0,
+        hsn: "",
       };
       state.items.push(newItem);
     },
@@ -127,6 +177,25 @@ const invoiceSlice = createSlice({
     setLogo: (state, action: PayloadAction<string | null>) => {
       state.businessDetails.logo = action.payload;
     },
+    setIsIndia: (state, action: PayloadAction<boolean>) => {
+      state.isIndia = action.payload;
+      if (action.payload) {
+        state.currency = "INR";
+      }
+    },
+    setCurrency: (state, action: PayloadAction<string>) => {
+      state.currency = action.payload;
+    },
+    updateAuthorizedSignatory: (
+      state,
+      action: PayloadAction<{ field: string; value: string }>
+    ) => {
+      const { field, value } = action.payload;
+      (state.authorizedSignatory as any)[field] = value;
+    },
+    setSignature: (state, action: PayloadAction<string | null>) => {
+      state.authorizedSignatory.signature = action.payload;
+    },
     resetInvoice: () => initialState,
   },
 });
@@ -141,6 +210,10 @@ export const {
   updateNotes,
   updateCustomization,
   setLogo,
+  setIsIndia,
+  setCurrency,
+  updateAuthorizedSignatory,
+  setSignature,
   resetInvoice,
 } = invoiceSlice.actions;
 
