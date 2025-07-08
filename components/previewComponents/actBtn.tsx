@@ -10,7 +10,7 @@ const handlePrint = () => {
 const ActButton: React.FC = () => {
   return (
     <div className="space-y-3">
-      <Button onClick={handlePrint} className="w-full">
+      <Button onClick={handlePrint} variant="outline" className="w-full">
         <Printer className="h-4 w-4 mr-2" />
         Print Invoice
       </Button>

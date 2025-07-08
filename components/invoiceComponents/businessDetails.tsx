@@ -95,6 +95,56 @@ const BusinessDetails: React.FC = () => {
             />
           </div>
           <div>
+            <Label htmlFor="businessGstin">GSTIN/UIN</Label>
+            <Input
+              id="businessGstin"
+              placeholder="GSTIN/UIN Number"
+              value={invoice.businessDetails.gstin}
+              onChange={(e) =>
+                dispatch(
+                  updateBusinessDetails({
+                    field: "gstin",
+                    value: e.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <Label htmlFor="businessStateName">State Name</Label>
+            <Input
+              id="businessStateName"
+              placeholder="State Name"
+              value={invoice.businessDetails.stateName}
+              onChange={(e) =>
+                dispatch(
+                  updateBusinessDetails({
+                    field: "stateName",
+                    value: e.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+          <div>
+            <Label htmlFor="businessStateCode">State Code</Label>
+            <Input
+              id="businessStateCode"
+              placeholder="State Code"
+              value={invoice.businessDetails.stateCode}
+              onChange={(e) =>
+                dispatch(
+                  updateBusinessDetails({
+                    field: "stateCode",
+                    value: e.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+          <div>
             <Label htmlFor="logo">Logo Upload</Label>
             <Input
               id="logo"
