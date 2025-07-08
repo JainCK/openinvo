@@ -7,6 +7,7 @@ import BusinessDetails from "@/components/invoiceComponents/businessDetails";
 import ClientDetails from "@/components/invoiceComponents/clientDetails";
 import InvoiceItems from "@/components/invoiceComponents/invoiceItems";
 import Notes from "@/components/invoiceComponents/Notes";
+import AuthorizedSignatory from "@/components/invoiceComponents/authorizedSignatory";
 import ActionButton from "@/components/invoiceComponents/actionBtn";
 
 export default function CreatePage() {
@@ -19,6 +20,7 @@ export default function CreatePage() {
           <ClientDetails />
           <InvoiceItems />
           <Notes />
+          <AuthorizedSignatory />
           <ActionButton />
         </div>
       </div>
