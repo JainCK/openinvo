@@ -2,7 +2,6 @@
 
 A modern, responsive, and feature-rich invoice generation application built with Next.js 15, React 19, and TypeScript. Create professional invoices with ease, customize their appearance, and export them as PDF.
 
-![OpenInvo Banner](https://via.placeholder.com/800x300/1e3a8a/ffffff?text=OpenInvo+-+Professional+Invoice+Generator)
 
 ## ✨ Features
 
@@ -30,7 +29,6 @@ A modern, responsive, and feature-rich invoice generation application built with
 
 ### 📤 Export Options
 
-- **PDF Generation**: High-quality PDF export using jsPDF and html2canvas
 - **Print Support**: Direct printing with optimized print styles
 - **Multiple Formats**: Various export options for different use cases
 
@@ -55,11 +53,6 @@ A modern, responsive, and feature-rich invoice generation application built with
 
 - **Redux Toolkit**: For global state management
 - **React Redux**: React bindings for Redux
-
-### Export & Printing
-
-- **jsPDF**: PDF generation
-- **html2canvas**: HTML to canvas conversion for high-quality PDF export
 
 ### Development Tools
 
@@ -280,7 +273,7 @@ The application uses Tailwind CSS for styling with custom components and animati
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -300,6 +293,6 @@ If you have any questions or need help getting started:
 
 ---
 
-**Made with ❤️ by the OpenInvo Team**
+**Made with ❤️ by JAINCK**
 
 _Create professional invoices with ease and style._
