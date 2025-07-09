@@ -140,10 +140,10 @@ const InvoiceRef: React.FC = () => {
   };
 
   return (
-    <div className="lg:col-span-3">
+    <div className="lg:col-span-3 w-full">
       <div
         ref={invoiceRefElement}
-        className="invoice-content bg-white shadow-lg print:shadow-none print:!m-0 print:!p-0"
+        className="invoice-content bg-white shadow-lg print:shadow-none print:!m-0 print:!p-0 mx-auto max-w-full overflow-x-auto"
         data-invoice-number={invoice.invoiceNumber || "draft"}
         style={{
           fontFamily: invoice.customization.font,
@@ -183,11 +183,42 @@ const InvoiceRef: React.FC = () => {
           .invoice-content .border-black {
             border-color: #000000 !important;
           }
+
+          /* Mobile responsive styles */
+          @media (max-width: 768px) {
+            .invoice-content {
+              width: 100% !important;
+              min-width: auto !important;
+              font-size: 12px !important;
+              padding: 8px !important;
+            }
+            .invoice-content table {
+              font-size: 10px !important;
+            }
+            .invoice-content .text-xs {
+              font-size: 9px !important;
+            }
+            .invoice-content .text-sm {
+              font-size: 11px !important;
+            }
+            .invoice-content .text-base {
+              font-size: 12px !important;
+            }
+            .invoice-content .text-3xl {
+              font-size: 18px !important;
+            }
+            .invoice-content .text-2xl {
+              font-size: 16px !important;
+            }
+          }
+
           @media print {
             .invoice-content {
               box-shadow: none !important;
               margin: 0 !important;
               padding: 0 !important;
+              width: auto !important;
+              font-size: inherit !important;
             }
             .print-optimize {
               page-break-inside: avoid;
@@ -229,33 +260,37 @@ const InvoiceRef: React.FC = () => {
             </div>
             {/* Horizontal Invoice Details Table */}
             <table className="w-full border-collapse border border-gray-400 text-xs">
-              <tr>
-                <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
-                  Date
-                </td>
-                <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
-                  Due Date
-                </td>
-                <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
-                  Currency
-                </td>
-              </tr>
-              <tr>
-                <td className="border border-gray-400 px-1 py-0.5 text-center">
-                  {invoice.invoiceDate || "Not specified"}
-                </td>
-                <td className="border border-gray-400 px-1 py-0.5 text-center">
-                  {invoice.dueDate || "Not specified"}
-                </td>
-                <td className="border border-gray-400 px-1 py-0.5 text-center">
-                  {invoice.currency}
-                </td>
-              </tr>
+              <thead>
+                <tr>
+                  <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
+                    Date
+                  </td>
+                  <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
+                    Due Date
+                  </td>
+                  <td className="border border-gray-400 px-1 py-0.5 font-semibold bg-gray-100 text-center">
+                    Currency
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-400 px-1 py-0.5 text-center">
+                    {invoice.invoiceDate || "Not specified"}
+                  </td>
+                  <td className="border border-gray-400 px-1 py-0.5 text-center">
+                    {invoice.dueDate || "Not specified"}
+                  </td>
+                  <td className="border border-gray-400 px-1 py-0.5 text-center">
+                    {invoice.currency}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
 
           {/* Business and Customer Details Side by Side */}
-          <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             {/* Business Details Section */}
             <div>
               <h3 className="font-semibold text-xs mb-1 text-black border-b border-gray-300 pb-1">
@@ -553,10 +588,10 @@ const InvoiceRef: React.FC = () => {
           </div>
 
           {/* Tax Summary and Breakdown */}
-          <div className="flex justify-end gap-2">
+          <div className="flex flex-col md:flex-row md:justify-end gap-2">
             {/* Tax Rate Breakdown Table */}
             {getTaxRateBreakdown().length > 0 && (
-              <div className="w-1/3">
+              <div className="w-full md:w-1/3">
                 <h3 className="font-semibold text-xs mb-1 text-black border-b border-gray-300 pb-1">
                   Tax Rate Breakdown
                 </h3>
@@ -588,7 +623,7 @@ const InvoiceRef: React.FC = () => {
             )}
 
             {/* Summary */}
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <h3 className="font-semibold text-xs mb-1 text-black border-b border-gray-300 pb-1">
                 Summary
               </h3>
